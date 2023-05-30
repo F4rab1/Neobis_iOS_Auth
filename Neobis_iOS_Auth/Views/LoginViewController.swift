@@ -36,6 +36,39 @@ class LoginViewController: UIViewController {
         return tf
     }()
     
+    private let passwordTextField: UITextField = {
+        let tf = UITextField()
+        tf.backgroundColor = .secondarySystemBackground
+        tf.layer.cornerRadius = 8
+        tf.returnKeyType = .done
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
+        tf.leftViewMode = .always
+        tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: tf.bounds.size.height))
+        tf.placeholder = "Пароль"
+        return tf
+    }()
+    
+    private let signInButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(hexString: "#5D5FEF")
+        button.layer.cornerRadius = 16
+        button.setTitle("Войти", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(signInPressed), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        return button
+    }()
+    
+    private let forgotPassButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Забыли пароль?", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(forgotPassButtonPressed), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        return button
+    }()
+    
     private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "backButton"), for: .normal)
@@ -60,10 +93,23 @@ class LoginViewController: UIViewController {
         view.addSubview(backButton)
         view.addSubview(logoImageView)
         view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(signInButton)
+        view.addSubview(forgotPassButton)
     }
     
     @objc private func backButtonPressed() {
         dismiss(animated: true)
+    }
+    
+    @objc private func signInPressed() {
+        let vc = HomeViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc private func forgotPassButtonPressed() {
+        print("Forgot button pressed need to be implemented!!!")
     }
     
     func setupConstraints() {
@@ -83,6 +129,24 @@ class LoginViewController: UIViewController {
             make.top.equalToSuperview().offset((screenHeight / 812) * 236)
             make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
             make.height.equalTo(textFieldHeight)
+        }
+        
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField.snp.bottom).offset((screenHeight / 812) * 24)
+            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
+            make.height.equalTo(textFieldHeight)
+        }
+        
+        signInButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset((screenHeight / 812) * 60)
+            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
+            make.height.equalTo(buttonHeight)
+        }
+        
+        forgotPassButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset((screenHeight / 812) * 44)
+            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
+            make.height.equalTo(buttonHeight)
         }
         
 //            .offset((screenHeight / 812) * 154)
