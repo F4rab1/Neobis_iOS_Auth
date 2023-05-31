@@ -1,13 +1,13 @@
 //
-//  RegistrationViewController.swift
+//  CreatePasswordViewController.swift
 //  Neobis_iOS_Auth
 //
-//  Created by Фараби Иса on 30.05.2023.
+//  Created by Фараби Иса on 31.05.2023.
 //
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+class CreatePasswordViewController: UIViewController {
     
     var screenHeight: CGFloat = 0
     var screenWidth: CGFloat = 0
@@ -25,29 +25,12 @@ class RegistrationViewController: UIViewController {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Регистрация"
+        label.text = "Создать пароля"
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
-    private let logoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "logo")
-        return iv
-    }()
-    
-    private let subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor(hexString: "#5D5FEF")
-        label.textAlignment = .left
-        label.text = "Смейся \nи улыбайся \nкаждый день"
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 44, weight: .semibold)
-        return label
-    }()
-    
-    private let emailTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let tf = UITextField()
         tf.backgroundColor = .secondarySystemBackground
         tf.layer.cornerRadius = 8
@@ -56,7 +39,21 @@ class RegistrationViewController: UIViewController {
         tf.autocapitalizationType = .none
         tf.leftViewMode = .always
         tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: tf.bounds.size.height))
-        tf.placeholder = "Электронная почта"
+        tf.placeholder = "Придумайте пароль"
+        tf.textContentType = .password
+        return tf
+    }()
+    
+    private let rePasswordTextField: UITextField = {
+        let tf = UITextField()
+        tf.backgroundColor = .secondarySystemBackground
+        tf.layer.cornerRadius = 8
+        tf.returnKeyType = .done
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
+        tf.leftViewMode = .always
+        tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: tf.bounds.size.height))
+        tf.placeholder = "Повторите пароль"
         tf.keyboardType = .emailAddress
         tf.textContentType = .emailAddress
         return tf
@@ -73,28 +70,27 @@ class RegistrationViewController: UIViewController {
         return button
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         screenHeight = UIScreen.main.bounds.height
         screenWidth = UIScreen.main.bounds.width
         textFieldHeight = (screenHeight / 812) * 60
         buttonHeight = (screenHeight / 812) * 65
         
-        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        rePasswordTextField.delegate = self
 
         setupViews()
         setupConstraints()
     }
-
+    
     func setupViews() {
         view.backgroundColor = .white
         view.addSubview(backButton)
         view.addSubview(titleLabel)
-        view.addSubview(subTitleLabel)
-        view.addSubview(logoImageView)
-        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
+        view.addSubview(rePasswordTextField)
         view.addSubview(forwardButton)
     }
     
@@ -103,7 +99,7 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func forwardButtonPressed() {
-        let vc = DetailInfoViewController()
+        let vc = HomeViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -119,38 +115,28 @@ class RegistrationViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        subTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset((screenHeight / 812) * 37)
-            make.leading.equalTo(20)
-            make.trailing.equalTo(-20)
+        passwordTextField.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset((screenHeight / 812) * 49)
+            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
+            make.height.equalTo(textFieldHeight)
         }
         
-        logoImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset((screenHeight / 812) * 22)
-            make.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
-            make.width.equalTo(80)
-            make.height.equalTo(80)
-        }
-        
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(subTitleLabel.snp.bottom).offset((screenHeight / 812) * 60)
+        rePasswordTextField.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset((screenHeight / 812) * 24)
             make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
             make.height.equalTo(textFieldHeight)
         }
         
         forwardButton.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset((screenHeight / 812) * 60)
+            make.top.equalTo(rePasswordTextField.snp.bottom).offset((screenHeight / 812) * 168)
             make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
             make.height.equalTo(buttonHeight)
         }
-        
-//            .offset((screenHeight / 812) * 154)
-//            .inset((screenWidth / 375) * 20) 28
     }
     
 }
 
-extension RegistrationViewController: UITextFieldDelegate {
+extension CreatePasswordViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         guard let placeholder = textField.placeholder, !placeholder.isEmpty else {
             return

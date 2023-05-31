@@ -17,6 +17,8 @@
 		D344474C2A264AD8002D53A8 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344474B2A264AD8002D53A8 /* RegistrationViewController.swift */; };
 		D344474E2A264C48002D53A8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344474D2A264C48002D53A8 /* LoginViewController.swift */; };
 		D34447502A265DBA002D53A8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344474F2A265DBA002D53A8 /* HomeViewController.swift */; };
+		D34447522A272F3B002D53A8 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34447512A272F3B002D53A8 /* DetailInfoViewController.swift */; };
+		D34447542A275BB5002D53A8 /* CreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34447532A275BB5002D53A8 /* CreatePasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		D344474B2A264AD8002D53A8 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D344474D2A264C48002D53A8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D344474F2A265DBA002D53A8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D34447512A272F3B002D53A8 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
+		D34447532A275BB5002D53A8 /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 			children = (
 				D344472F2A2536F2002D53A8 /* SplashViewController.swift */,
 				D344474B2A264AD8002D53A8 /* RegistrationViewController.swift */,
+				D34447512A272F3B002D53A8 /* DetailInfoViewController.swift */,
+				D34447532A275BB5002D53A8 /* CreatePasswordViewController.swift */,
 				D344474D2A264C48002D53A8 /* LoginViewController.swift */,
 				D344474F2A265DBA002D53A8 /* HomeViewController.swift */,
 			);
@@ -174,9 +180,11 @@
 				D34447302A2536F2002D53A8 /* SplashViewController.swift in Sources */,
 				D344472C2A2536F2002D53A8 /* AppDelegate.swift in Sources */,
 				D344472E2A2536F2002D53A8 /* SceneDelegate.swift in Sources */,
+				D34447542A275BB5002D53A8 /* CreatePasswordViewController.swift in Sources */,
 				D344474A2A263BD5002D53A8 /* UIColor+Extensions.swift in Sources */,
 				D34447502A265DBA002D53A8 /* HomeViewController.swift in Sources */,
 				D344474C2A264AD8002D53A8 /* RegistrationViewController.swift in Sources */,
+				D34447522A272F3B002D53A8 /* DetailInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
