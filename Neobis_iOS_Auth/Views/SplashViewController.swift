@@ -72,7 +72,9 @@ class SplashViewController: UIViewController {
     }
     
     @objc private func signUpPressed() {
-        let vc = RegistrationViewController()
+        let registrationService = RegistrationService()
+        let viewModel = RegistrationViewModel(registrationService: registrationService)
+        let vc = RegistrationViewController(viewModel: viewModel)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

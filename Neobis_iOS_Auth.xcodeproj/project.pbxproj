@@ -19,6 +19,10 @@
 		D34447502A265DBA002D53A8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344474F2A265DBA002D53A8 /* HomeViewController.swift */; };
 		D34447522A272F3B002D53A8 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34447512A272F3B002D53A8 /* DetailInfoViewController.swift */; };
 		D34447542A275BB5002D53A8 /* CreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34447532A275BB5002D53A8 /* CreatePasswordViewController.swift */; };
+		D344475A2A2A56A5002D53A8 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34447592A2A56A5002D53A8 /* ResetPasswordViewController.swift */; };
+		D344475C2A2A56C3002D53A8 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344475B2A2A56C3002D53A8 /* NewPasswordViewController.swift */; };
+		D3806C742A30A60000E2ACE8 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3806C732A30A60000E2ACE8 /* RegistrationService.swift */; };
+		D3E533442A2F7F6B005F6A1F /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E533432A2F7F6B005F6A1F /* RegistrationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		D344474F2A265DBA002D53A8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D34447512A272F3B002D53A8 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		D34447532A275BB5002D53A8 /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewController.swift; sourceTree = "<group>"; };
+		D34447592A2A56A5002D53A8 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		D344475B2A2A56C3002D53A8 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
+		D3806C732A30A60000E2ACE8 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		D3E533432A2F7F6B005F6A1F /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,9 @@
 		D344472A2A2536F2002D53A8 /* Neobis_iOS_Auth */ = {
 			isa = PBXGroup;
 			children = (
+				D3806C722A309EDE00E2ACE8 /* Models  */,
+				D3E533402A2EF74F005F6A1F /* Service */,
+				D3E5333D2A2EEEA1005F6A1F /* ViewModels */,
 				D34447472A263A32002D53A8 /* Views */,
 				D34447482A263BA2002D53A8 /* Extensions */,
 				D344472B2A2536F2002D53A8 /* AppDelegate.swift */,
@@ -87,6 +98,8 @@
 				D34447512A272F3B002D53A8 /* DetailInfoViewController.swift */,
 				D34447532A275BB5002D53A8 /* CreatePasswordViewController.swift */,
 				D344474D2A264C48002D53A8 /* LoginViewController.swift */,
+				D34447592A2A56A5002D53A8 /* ResetPasswordViewController.swift */,
+				D344475B2A2A56C3002D53A8 /* NewPasswordViewController.swift */,
 				D344474F2A265DBA002D53A8 /* HomeViewController.swift */,
 			);
 			path = Views;
@@ -98,6 +111,29 @@
 				D34447492A263BD5002D53A8 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D3806C722A309EDE00E2ACE8 /* Models  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Models ";
+			sourceTree = "<group>";
+		};
+		D3E5333D2A2EEEA1005F6A1F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D3E533432A2F7F6B005F6A1F /* RegistrationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D3E533402A2EF74F005F6A1F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D3806C732A30A60000E2ACE8 /* RegistrationService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,12 +213,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D344474E2A264C48002D53A8 /* LoginViewController.swift in Sources */,
+				D3806C742A30A60000E2ACE8 /* RegistrationService.swift in Sources */,
 				D34447302A2536F2002D53A8 /* SplashViewController.swift in Sources */,
 				D344472C2A2536F2002D53A8 /* AppDelegate.swift in Sources */,
 				D344472E2A2536F2002D53A8 /* SceneDelegate.swift in Sources */,
 				D34447542A275BB5002D53A8 /* CreatePasswordViewController.swift in Sources */,
+				D344475C2A2A56C3002D53A8 /* NewPasswordViewController.swift in Sources */,
 				D344474A2A263BD5002D53A8 /* UIColor+Extensions.swift in Sources */,
 				D34447502A265DBA002D53A8 /* HomeViewController.swift in Sources */,
+				D3E533442A2F7F6B005F6A1F /* RegistrationViewModel.swift in Sources */,
+				D344475A2A2A56A5002D53A8 /* ResetPasswordViewController.swift in Sources */,
 				D344474C2A264AD8002D53A8 /* RegistrationViewController.swift in Sources */,
 				D34447522A272F3B002D53A8 /* DetailInfoViewController.swift in Sources */,
 			);

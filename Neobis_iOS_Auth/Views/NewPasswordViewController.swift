@@ -1,15 +1,14 @@
 //
-//  LoginViewController.swift
+//  NewPasswordViewController.swift
 //  Neobis_iOS_Auth
 //
-//  Created by Фараби Иса on 30.05.2023.
+//  Created by Фараби Иса on 02.06.2023.
 //
 
 import UIKit
-import SnapKit
 
-class LoginViewController: UIViewController {
-    
+class NewPasswordViewController: UIViewController {
+
     var screenHeight: CGFloat = 0
     var screenWidth: CGFloat = 0
     var textFieldHeight: CGFloat = 0
@@ -22,26 +21,13 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    private let logoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "logo")
-        return iv
-    }()
-    
-    private let emailTextField: UITextField = {
-        let tf = UITextField()
-        tf.backgroundColor = .secondarySystemBackground
-        tf.layer.cornerRadius = 8
-        tf.returnKeyType = .done
-        tf.autocorrectionType = .no
-        tf.autocapitalizationType = .none
-        tf.leftViewMode = .always
-        tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: tf.bounds.size.height))
-        tf.placeholder = "Электронная почта"
-        tf.keyboardType = .emailAddress
-        tf.textContentType = .emailAddress
-        return tf
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.text = "Сброс пароля"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        return label
     }()
     
     private let passwordTextField: UITextField = {
@@ -52,43 +38,49 @@ class LoginViewController: UIViewController {
         tf.autocorrectionType = .no
         tf.autocapitalizationType = .none
         tf.leftViewMode = .always
-        tf.textContentType = .password
         tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: tf.bounds.size.height))
-        tf.placeholder = "Пароль"
+        tf.placeholder = "Придумайте пароль"
+        tf.textContentType = .password
         return tf
     }()
     
-    private let signInButton: UIButton = {
+    private let rePasswordTextField: UITextField = {
+        let tf = UITextField()
+        tf.backgroundColor = .secondarySystemBackground
+        tf.layer.cornerRadius = 8
+        tf.returnKeyType = .done
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
+        tf.leftViewMode = .always
+        tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: tf.bounds.size.height))
+        tf.placeholder = "Повторите пароль"
+        tf.keyboardType = .emailAddress
+        tf.textContentType = .emailAddress
+        return tf
+    }()
+    
+    private let forwardButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(hexString: "#5D5FEF")
         button.layer.cornerRadius = 16
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Далее", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(signInPressed), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        return button
-    }()
-    
-    private let forgotPassButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Забыли пароль?", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(forgotPassButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(forwardButtonPressed), for: .touchUpInside)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         screenHeight = UIScreen.main.bounds.height
         screenWidth = UIScreen.main.bounds.width
         textFieldHeight = (screenHeight / 812) * 60
         buttonHeight = (screenHeight / 812) * 65
         
-        emailTextField.delegate = self
         passwordTextField.delegate = self
-        
+        rePasswordTextField.delegate = self
+
         setupViews()
         setupConstraints()
     }
@@ -96,25 +88,18 @@ class LoginViewController: UIViewController {
     func setupViews() {
         view.backgroundColor = .white
         view.addSubview(backButton)
-        view.addSubview(logoImageView)
-        view.addSubview(emailTextField)
+        view.addSubview(titleLabel)
         view.addSubview(passwordTextField)
-        view.addSubview(signInButton)
-        view.addSubview(forgotPassButton)
+        view.addSubview(rePasswordTextField)
+        view.addSubview(forwardButton)
     }
     
     @objc private func backButtonPressed() {
         dismiss(animated: true)
     }
     
-    @objc private func signInPressed() {
-        let vc = HomeViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @objc private func forgotPassButtonPressed() {
-        let vc = ResetPasswordViewController()
+    @objc private func forwardButtonPressed() {
+        let vc = LoginViewController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
@@ -125,44 +110,33 @@ class LoginViewController: UIViewController {
             make.leading.equalToSuperview().offset((screenWidth / 375) * 20)
         }
         
-        logoImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset((screenHeight / 812) * 76)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset((screenHeight / 812) * 55)
             make.centerX.equalToSuperview()
-            make.width.equalTo(120)
-            make.height.equalTo(120)
-        }
-        
-        emailTextField.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset((screenHeight / 812) * 236)
-            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
-            make.height.equalTo(textFieldHeight)
         }
         
         passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset((screenHeight / 812) * 24)
+            make.top.equalTo(titleLabel.snp.bottom).offset((screenHeight / 812) * 49)
             make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
             make.height.equalTo(textFieldHeight)
         }
         
-        signInButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset((screenHeight / 812) * 60)
+        rePasswordTextField.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset((screenHeight / 812) * 24)
+            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
+            make.height.equalTo(textFieldHeight)
+        }
+        
+        forwardButton.snp.makeConstraints { make in
+            make.top.equalTo(rePasswordTextField.snp.bottom).offset((screenHeight / 812) * 168)
             make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
             make.height.equalTo(buttonHeight)
         }
-        
-        forgotPassButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset((screenHeight / 812) * 44)
-            make.leading.trailing.equalToSuperview().inset((screenWidth / 375) * 20)
-            make.height.equalTo(buttonHeight)
-        }
-        
-//            .offset((screenHeight / 812) * 154)
-//            .inset((screenWidth / 375) * 20) 28
     }
 
 }
 
-extension LoginViewController: UITextFieldDelegate {
+extension NewPasswordViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         guard let placeholder = textField.placeholder, !placeholder.isEmpty else {
             return

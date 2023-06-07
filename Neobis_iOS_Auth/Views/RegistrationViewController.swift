@@ -9,6 +9,17 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
+    private var viewModel: RegistrationViewModelType
+    
+    init(viewModel: RegistrationViewModelType) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var screenHeight: CGFloat = 0
     var screenWidth: CGFloat = 0
     var textFieldHeight: CGFloat = 0
@@ -73,7 +84,6 @@ class RegistrationViewController: UIViewController {
         return button
     }()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,6 +93,10 @@ class RegistrationViewController: UIViewController {
         buttonHeight = (screenHeight / 812) * 65
         
         emailTextField.delegate = self
+        
+        viewModel.didRegister = { [weak self] in
+            self?.showNextViewController()
+        }
 
         setupViews()
         setupConstraints()
@@ -103,9 +117,16 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func forwardButtonPressed() {
+        guard let email = emailTextField.text, !email.isEmpty else {
+            return
+        }
+        viewModel.register(email: email)
+    }
+
+    func showNextViewController() {
         let vc = DetailInfoViewController()
         vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
     
     func setupConstraints() {
